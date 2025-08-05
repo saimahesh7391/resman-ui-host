@@ -1,6 +1,6 @@
 // File: src/components/SowDetails.tsx
 import { useEffect, useState } from 'react';
-import { apiClient } from '@/lib/apiClient';
+import { apiClient } from '@/api/apiClient';
 
 interface Sow {
   key: string;

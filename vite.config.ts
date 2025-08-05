@@ -15,7 +15,7 @@ export default defineConfig({
         admin_app: "http://localhost:3001/assets/remoteEntry.js",
         recruit_app: "http://localhost:3002/assets/remoteEntry.js",
       },
-      shared: ["react", "react-dom", "react-router-dom"]
+      shared: ["react", "react-dom", "react-router-dom", "@mui/material", "@mui/icons-material", "axios", "@tanstack/react-query"],
     }),
   ],
   server: { port: 3000, cors: true },
