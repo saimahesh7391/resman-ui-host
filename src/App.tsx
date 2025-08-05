@@ -2,9 +2,8 @@ import { Suspense } from "react";
 import "./App.css";
 import Button from "@mui/material/Button";
 import { ErrorBoundary } from "react-error-boundary";
-import AdminDashboard from "admin_app/AdminDashboard";
-import RecruitDashboard from "recruit_app/RecruitDashboard";
-
+import AppRoutes from "./app/routes/AppRoutes";
+ 
 function App() {
   return (
     <div>
@@ -14,8 +13,7 @@ function App() {
       </Button>
       <ErrorBoundary fallback={<div>Error loading remote components</div>}>
         <Suspense fallback={<div>Loading...</div>}>
-          <AdminDashboard />
-          <RecruitDashboard />
+          <AppRoutes />
         </Suspense>
       </ErrorBoundary>
     </div>

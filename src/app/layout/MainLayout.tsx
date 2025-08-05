@@ -34,18 +34,17 @@
 //   );
 // }
 // resmanui-host/src/app/layout/MainLayout.tsx
-import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
 const MainLayout = () => {
   return (
-    <div className='tw-flex tw-flex-col tw-min-h-screen'>
+    <div className='flex flex-col min-h-screen'>
       <Navbar />
-      <div className='tw-flex tw-flex-1'>
+      <div className='flex flex-1'>
         <Sidebar />
-        <div className='tw-flex-1 tw-p-4'>
+        <div className='flex-1 p-4'>
           <Outlet />
         </div>
       </div>

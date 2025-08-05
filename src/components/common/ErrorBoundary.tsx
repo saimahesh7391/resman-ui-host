@@ -1,5 +1,5 @@
 // src/components/common/ErrorBoundary.tsx
-import React, { Component, type ReactNode } from "react";
+import   { Component, type ReactNode } from "react";
 
 interface Props {
   children: ReactNode;

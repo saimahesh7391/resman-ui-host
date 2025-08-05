@@ -61,48 +61,48 @@
 //   );
 // }
 // resmanui-host/src/components/Sidebar.tsx
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "../auth/AuthContext";
+import  {  useState } from "react";
+import { Link } from "react-router-dom";
+// import { useAuth } from "../auth/AuthContext";
 
 const Sidebar = () => {
-  const { user } = useAuth();
-  const location = useLocation();
-  const [sidebarItems, setSidebarItems] = useState<
+  // const { user } = useAuth();
+  // const location = useLocation();
+  const [sidebarItems] = useState<
     { label: string; path: string }[]
   >([]);
 
-  useEffect(() => {
-    if (!user) return;
+  // useEffect(() => {
+  //   if (!user) return;
 
-    const loadSidebarConfig = async () => {
-      try {
-        if (location.pathname.startsWith("/admin") && user.role === "admin") {
-          const { sidebarConfig } = await import(
-            "admin_app/AdminSidebarConfig"
-          );
-          setSidebarItems(sidebarConfig);
-        } else if (
-          location.pathname.startsWith("/recruit") &&
-          user.role === "recruiter"
-        ) {
-          const { sidebarConfig } = await import(
-            "recruit_app/RecruitSidebarConfig"
-          );
-          setSidebarItems(sidebarConfig);
-        } else {
-          setSidebarItems([]);
-        }
-      } catch (error) {
-        console.error("Failed to load sidebar config:", error);
-        setSidebarItems([]);
-      }
-    };
+  //   const loadSidebarConfig = async () => {
+  //     try {
+  //       if (location.pathname.startsWith("/admin") && user.role === "admin") {
+  //         const { sidebarConfig } = await import(
+  //           "admin_app/AdminSidebarConfig"
+  //         );
+  //         setSidebarItems(sidebarConfig);
+  //       } else if (
+  //         location.pathname.startsWith("/recruit") &&
+  //         user.role === "recruiter"
+  //       ) {
+  //         const { sidebarConfig } = await import(
+  //           "recruit_app/RecruitSidebarConfig"
+  //         );
+  //         setSidebarItems(sidebarConfig);
+  //       } else {
+  //         setSidebarItems([]);
+  //       }
+  //     } catch (error) {
+  //       console.error("Failed to load sidebar config:", error);
+  //       setSidebarItems([]);
+  //     }
+  //   };
 
-    loadSidebarConfig();
-  }, [location.pathname, user]);
+  //   loadSidebarConfig();
+  // }, [location.pathname, user]);
 
-  if (!user || !sidebarItems.length) return null;
+  // if (!user || !sidebarItems.length) return null;
 
   return (
     <div className='tw-w-64 tw-bg-gray-100 tw-h-full tw-p-4'>
