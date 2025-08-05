@@ -1,22 +1,17 @@
+// resman-ui-host/src/App.tsx
 import { Suspense } from "react";
-import "./App.css";
-import Button from "@mui/material/Button";
 import { ErrorBoundary } from "react-error-boundary";
 import AppRoutes from "./app/routes/AppRoutes";
- 
+import LoadingScreen from "./components/common/LoadingScreen";
+import "./App.css";
+
 function App() {
   return (
-    <div>
-      <h1>Host App</h1>
-      <Button variant='contained' color='primary'>
-        Host App Button
-      </Button>
-      <ErrorBoundary fallback={<div>Error loading remote components</div>}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <AppRoutes />
-        </Suspense>
-      </ErrorBoundary>
-    </div>
+    <ErrorBoundary fallback={<div>Error loading remote components</div>}>
+      <Suspense fallback={<LoadingScreen />}>
+        <AppRoutes />
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 

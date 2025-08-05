@@ -11,14 +11,9 @@ export default defineConfig({
     tailwindcss(),
     federation({
       name: "host_app",
-      filename: "remoteEntry.js",
-      // exposes: {
-      //   "./AuthContext": "./src/auth/AuthContext.tsx",
-      //   "./ApiClient": "./src/lib/apiClient.ts",
-      // },
       remotes: {
         admin_app: "http://localhost:3001/assets/remoteEntry.js",
-        // recruit_app: "http://localhost:3002/assets/remoteEntry.js",
+        recruit_app: "http://localhost:3002/assets/remoteEntry.js",
       },
       shared: ["react", "react-dom", "react-router-dom"]
     }),

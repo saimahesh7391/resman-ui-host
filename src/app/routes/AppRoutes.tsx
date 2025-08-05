@@ -1,48 +1,38 @@
-// resmanui-host/src/app/routes/AppRoutes.tsx
-import   { lazy, Suspense } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-// import { useAuth } from '../../auth/AuthContext';
-import MainLayout from "../layout/MainLayout";
-import AuthRoutes from "../../auth/AuthRoutes";
-import ErrorBoundary from "../../components/common/ErrorBoundary";
+// resman-ui-host/src/app/routes/AppRoutes.tsx
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+import PublicRoutes from "@/pages/public/PublicRoutes";
+import MainLayout from "@/app/layout/MainLayout";
+import LoadingScreen from "@/components/common/LoadingScreen";
+import NotFoundPage from "@/components/common/NotFoundPage";
 
 const AdminRoutes = lazy(() => import("admin_app/AdminRoutes"));
-// const RecruitRoutes = lazy(() => import("recruit_app/RecruitRoutes"));
+const RecruitRoutes = lazy(() => import("recruit_app/RecruitRoutes"));
 
 const AppRoutes = () => {
-  // const { user } = useAuth();
-
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<LoadingScreen />}>
       <Routes>
         <Route element={<MainLayout />}>
-          <Route
-            path='/admin/*'
-            element={
-                <ErrorBoundary>
-                  <AdminRoutes />
-                </ErrorBoundary>
-              // user?.role === "admin" ? (
-              // ) : (
-              //   <Navigate to='/auth/login' />
-              // )
-            }
-          />
-          {/* <Route
-            path='/recruit/*'
-            element={
-                <ErrorBoundary>
-                  <RecruitRoutes />
-                </ErrorBoundary>
-              // user?.role === "recruiter" ? (
-              // ) : (
-              //   <Navigate to='/auth/login' />
-              // )
-            }
-          /> */}
-          <Route path='/*' element={<Navigate to='/auth/login' />} />
+          {/* Public Routes */}
+          <Route path="/*" element={<PublicRoutes />} />
+
+          {/* Admin Microfrontend */}
+          <Route path="/admin/*" element={<AdminRoutes />} />
+
+          {/* Recruit Microfrontend */}
+          <Route path="/recruit/*" element={<RecruitRoutes />} />
+
+          {/* Placeholder for Future Microfrontends */}
+          <Route path="/employee/*" element={<NotFoundPage />} />
+          <Route path="/sales/*" element={<NotFoundPage />} />
+          <Route path="/finance/*" element={<NotFoundPage />} />
+          <Route path="/hr/*" element={<NotFoundPage />} />
+          <Route path="/reports/*" element={<NotFoundPage />} />
+
+          {/* Catch-all for 404 */}
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
-        <Route path='/auth/*' element={<AuthRoutes />} />
       </Routes>
     </Suspense>
   );
