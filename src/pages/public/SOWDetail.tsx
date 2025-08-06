@@ -54,6 +54,21 @@ const SowDetails: React.FC = () => {
     fetchSow();
   }, []);
 
+  useEffect(() => {
+    const fetchSow = async () => {
+      try {
+        const response = await apiClient.get('resmanadmin/sow/getSowByAll', {});
+        console.log(response);
+      } catch (err: any) {
+        setError(err.message || 'Failed to load SOW');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSow();
+  }, []);
+
   if (loading) return <p>Loading SOW...</p>;
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
   if (!sow) return <p>No SOW found.</p>;

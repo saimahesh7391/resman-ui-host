@@ -22,6 +22,7 @@ export const apiClient = axios.create({
 apiClient.interceptors.response.use(
   (response) => {
     const apiResponse = response.data as ApiResponse;
+    console.log('API Response:', apiResponse);
     if (apiResponse.error) {
       return Promise.reject(new Error(apiResponse.error));
     }
