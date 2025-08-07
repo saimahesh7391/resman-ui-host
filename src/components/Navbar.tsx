@@ -21,10 +21,12 @@ const Navbar = () => {
   return (
     <AppBar position="static" sx={{ backgroundColor: "#18206F" }}>
       <Toolbar sx={{ justifyContent: "space-between", alignItems: "center" }}>
+        <div className="flex justify-between items-center">
         <Typography variant="h6" sx={{ color: "white", fontWeight: "bold" }}>
           LOGO
         </Typography>
-        <div className="flex space-x-4">
+        </div>
+        <div className="flex items-center space-x-8">
           {modules.map((module) => (
             <NavLink
               key={module.name}

@@ -1,8 +1,8 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
-import federation from "@originjs/vite-plugin-federation";
-import path from "path";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
+import federation from '@originjs/vite-plugin-federation';
+import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -10,18 +10,28 @@ export default defineConfig({
     react(),
     tailwindcss(),
     federation({
-      name: "host_app",
-      remotes: {
-        admin_app: "http://localhost:3001/assets/remoteEntry.js",
-        recruit_app: "http://localhost:3002/assets/remoteEntry.js",
+      name: 'host_app',
+      exposes: {
+        './SidebarConfig': './src/types/sidebar.ts',
       },
-      shared: ["react", "react-dom", "react-router-dom", "@mui/material", "axios", "@tanstack/react-query"],
+      remotes: {
+        admin_app: 'http://localhost:3001/assets/remoteEntry.js',
+        recruit_app: 'http://localhost:3002/assets/remoteEntry.js',
+      },
+      shared: [
+        'react',
+        'react-dom',
+        'react-router-dom',
+        '@mui/material',
+        'axios',
+        '@tanstack/react-query',
+      ],
     }),
   ],
   server: { port: 3000, cors: true },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
 });

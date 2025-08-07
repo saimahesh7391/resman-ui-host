@@ -14,9 +14,9 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <Navbar />
       <div className="flex flex-1">
         <Sidebar />
-        <div className="flex-1 p-4">
+        <main className="flex-1 p-4 overflow-auto bg-gray-100">
           {children || <Outlet />}
-        </div>
+        </main>
       </div>
     </div>
   );
